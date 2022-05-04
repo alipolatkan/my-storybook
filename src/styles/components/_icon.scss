@@ -1,0 +1,18 @@
+$icon-intents: (
+  "primary": $primary,
+  "secondary": $secondary,
+  "success": $success,
+  "warning": $warning,
+  "danger": $danger,
+  "info": $info,
+);
+.i-icon {
+  display: inline-block;
+  @each $prefix, $intent in $icon-intents {
+    &.i-#{$prefix} {
+      &:before {
+        color: $intent;
+      }
+    }
+  }
+}

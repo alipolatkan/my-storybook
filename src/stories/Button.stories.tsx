@@ -93,8 +93,20 @@ WithLoading.args = {
   loading: true,
 };
 
+export const WithIcon = Template.bind({});
+WithIcon.args = {
+  label: "Button",
+  icon: "checkmark",
+};
+
 export const Disabled = Template.bind({});
 Disabled.args = {
   label: "Button",
   disabled: true,
+};
+
+export const JustIcon = Template.bind({});
+JustIcon.args = {
+  variant: "icon",
+  icon: "clear"
 };

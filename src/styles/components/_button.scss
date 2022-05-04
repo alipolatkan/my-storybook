@@ -18,34 +18,47 @@ $button-sizes: (
   &-btn {
     cursor: pointer;
     display: inline-block;
-    padding: 0.3rem 1rem;
-    background: $primary;
+    padding: 0.5rem 1.4rem;
+    background-color: $primary;
     border-radius: $radius-sm;
     border: 1px solid transparent;
-    font-size: $button-text;
     line-height: 1;
+    font-size: $button-text;
     text-align: center;
     text-decoration: none;
     transform: scale(1);
     white-space: nowrap;
     width: fit-content;
-    &:disabled {
+
+    &-loading {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    &-text {
+      .i-btn-loading & {
+        visibility: hidden;
+      }
+    }
+
+    &-disabled {
       background-color: $surface !important;
-      opacity: 0.4;
+      opacity: 0.5;
       color: $gray-60 !important;
       cursor: not-allowed;
+    }
+
+    .i-icon {
+      padding-right: $padding-xs;
+      font-size: ($height-base / 36px) * $button-text;
     }
 
     /** Button Sizes */
     @each $prefix, $size in $button-sizes {
       &.i-btn-#{$prefix} {
-        height: $size;
-        line-height: 0;
-        font-size: ($size / 28px) * $button-text;
+        font-size: ($size / 32px) * $button-text;
         .i-icon {
-          font-size: ($size / 32px) * $button-text;
-          line-height: 1;
-          padding-right: $padding-xs;
+          font-size: ($size / 36px) * $button-text;
         }
       }
     }
@@ -55,7 +68,7 @@ $button-sizes: (
         &.i-btn-#{$prefix} {
           @include solid($intent);
         }
-        & .m-icon {
+        & .i-icon {
           color: $white;
         }
       }
@@ -63,7 +76,7 @@ $button-sizes: (
         &.i-btn-#{$prefix} {
           @include outline($intent);
         }
-        &:hover .m-icon {
+        &:hover .i-icon {
           color: $white;
         }
       }
@@ -78,7 +91,7 @@ $button-sizes: (
           height: auto;
           border-radius: 100%;
           .i-icon {
-            padding: 6px;
+            padding: 4px;
           }
         }
       }

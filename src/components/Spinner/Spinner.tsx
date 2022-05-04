@@ -1,8 +1,8 @@
 import cx from "classnames";
 // Interface
-import { IElement } from "../../interfaces";
+import { IDiv } from "../../interfaces";
 
-interface SpinnerProps extends IElement {
+interface SpinnerProps extends IDiv {
   /**
    * If true, mount loader
    */
@@ -21,7 +21,7 @@ export const Spinner = ({
   className,
   ...props
 }: SpinnerProps) => {
-  const classNames = cx("m-spinner", className);
+  const classNames = cx("i-spinner", className);
   if (!active) return null;
-  return <span className={classNames} {...props}></span>;
+  return <div className={classNames} {...props}></div>;
 };

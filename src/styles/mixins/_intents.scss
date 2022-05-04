@@ -30,6 +30,13 @@
   color: $color;
   background-color: transparent;
   border: 1px solid $color;
+  &.i-btn-loading {
+    .i-spinner {
+      &::after {
+        filter: invert(0.3);
+      }
+    }
+  }
   @include hover {
     color: $gray-10;
     background-color: darken($color, 10%);
@@ -43,6 +50,13 @@
 @mixin ghost($color: $primary) {
   color: $color;
   background-color: transparent;
+  &.i-btn-loading {
+    .i-spinner {
+      &::after {
+        filter: invert(0.3);
+      }
+    }
+  }
   @include hover {
     background-color: lighten($surface, 6%);
   }

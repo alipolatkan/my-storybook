@@ -3,6 +3,7 @@ import cx from "classnames";
 import { IButton } from "../../interfaces";
 // Components
 import { Spinner } from "../Spinner";
+import { Icon } from "../Icon";
 // Types
 import { intent, size, variant } from "./Button.types";
 
@@ -15,6 +16,10 @@ interface ButtonProps extends IButton {
    * If it is true, button is disabled ana non-interactive
    */
   disabled?: boolean;
+  /**
+   * Name of icon. Rendered before text
+   */
+  icon?: string;
   /**
    * Defines color of button
    * @default 'primary'
@@ -52,6 +57,7 @@ export const Button = ({
   size,
   className,
   children,
+  icon,
   label,
   disabled,
   loading,
@@ -63,13 +69,17 @@ export const Button = ({
     intent && `i-btn-${intent}`,
     size && `i-btn-${size}`,
     loading && `i-btn-loading`,
-    (disabled || loading) && `i-btn-disabled`,
+    disabled && `i-btn-disabled`,
     className
   );
 
   return (
     <button className={classNames} disabled={loading || disabled} {...props}>
-      {loading ? <Spinner /> : children || label}
+      <span className="i-btn-text">
+        {icon && <Icon intent={variant === "icon" && intent} name={icon} />}
+        {children || label}
+      </span>
+      {loading && <Spinner />}
     </button>
   );
 };
