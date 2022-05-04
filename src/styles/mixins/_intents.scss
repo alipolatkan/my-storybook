@@ -1,0 +1,67 @@
+@mixin hover {
+  &:not([disabled]):hover {
+    transition: $time-sm;
+    @content;
+  }
+}
+@mixin active {
+  &:not([disabled]):active {
+    @content;
+  }
+}
+@mixin focus {
+  &:not([disabled]):focus {
+    @content;
+  }
+}
+
+@mixin solid($color: $primary) {
+  color: $gray-10;
+  background-color: $color;
+  @include hover {
+    background-color: darken($color, 10%);
+  }
+  @include active {
+    background-color: darken($color, 20%);
+  }
+}
+
+@mixin outline($color: $secondary) {
+  color: $color;
+  background-color: transparent;
+  border: 1px solid $color;
+  @include hover {
+    color: $gray-10;
+    background-color: darken($color, 10%);
+  }
+  @include active {
+    color: $gray-10;
+    background-color: darken($color, 20%);
+  }
+}
+
+@mixin ghost($color: $primary) {
+  color: $color;
+  background-color: transparent;
+  @include hover {
+    background-color: lighten($surface, 6%);
+  }
+  @include active {
+    background-color: lighten($surface, 3%);
+  }
+}
+
+@mixin icon($color: $primary) {
+  color: $color;
+  padding: 0;
+  background-color: transparent;
+  i {
+    transform: translateX(0);
+  }
+  @include hover {
+    background-color: lighten($surface, 6%);
+  }
+  @include active {
+    background-color: lighten($surface, 4%);
+  }
+}

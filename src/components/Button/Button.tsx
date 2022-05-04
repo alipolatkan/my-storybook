@@ -12,32 +12,31 @@ interface ButtonProps extends IButton {
    */
   className?: string;
   /**
-   * Defines size of button
-   * @default 'default'
+   * If it is true, button is disabled ana non-interactive
    */
-  size?: size;
-  /**
-   * Button contents
-   */
-  label?: string;
-  /**
-   * Defines style of button
-   * @default 'solid'
-   */
-  variant?: variant;
+  disabled?: boolean;
   /**
    * Defines color of button
    * @default 'primary'
    */
   intent?: intent;
   /**
+   * Button contents
+   */
+  label?: string;
+  /**
    * If it is true, button is disabled and loading animation
    */
   loading?: boolean;
   /**
-   * If it is true, button is disabled ana non-interactive
+   * Defines size of button
    */
-  disabled?: boolean;
+  size?: size;
+  /**
+   * Defines style of button
+   * @default 'solid'
+   */
+  variant?: variant;
   /**
    * Optional click handler
    */
@@ -50,7 +49,7 @@ interface ButtonProps extends IButton {
 export const Button = ({
   variant = "solid",
   intent = "primary",
-  size = "default",
+  size,
   className,
   children,
   label,
@@ -59,12 +58,12 @@ export const Button = ({
   ...props
 }: ButtonProps) => {
   const classNames = cx(
-    "m-btn",
-    variant && `m-btn--${variant}`,
-    intent && `m-btn--${intent}`,
-    size && `m-btn--${size}`,
-    loading && `m-btn--loading`,
-    (disabled || loading) && `m-btn--disabled`,
+    "i-btn",
+    variant && `i-btn-${variant}`,
+    intent && `i-btn-${intent}`,
+    size && `i-btn-${size}`,
+    loading && `i-btn-loading`,
+    (disabled || loading) && `i-btn-disabled`,
     className
   );
 
