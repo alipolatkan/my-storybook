@@ -38,10 +38,6 @@ interface ButtonProps extends IButton {
    * @default 'solid'
    */
   variant?: variant;
-  /**
-   * Optional click handler
-   */
-  onClick?: () => void;
 }
 
 /**

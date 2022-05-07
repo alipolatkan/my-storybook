@@ -32,6 +32,7 @@ $button-sizes: (
 
     &-loading {
       cursor: unset;
+      opacity: 0.5;
     }
 
     &-text {

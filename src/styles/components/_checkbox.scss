@@ -18,7 +18,7 @@
           transition: $time-sm;
           &:hover {
             transition: $time-sm;
-            background-color: lighten($color: $primary, $amount: 47);
+            background-color: lighten($color: $primary, $amount: 33);
           }
           &::before {
             content: "";

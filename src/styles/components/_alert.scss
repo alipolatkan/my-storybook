@@ -1,0 +1,50 @@
+$alert-border-radius: $radius-sm;
+$intents: (
+  "success": $success,
+  "warning": $warning,
+  "danger": $danger,
+  "info": $info,
+);
+$intents-bg: (
+  "success": desaturate(lighten($success, 50), 20),
+  "warning": desaturate(lighten($warning, 45), 20),
+  "danger": desaturate(lighten($danger, 50), 20),
+  "info": desaturate(lighten($info, 35), 20),
+);
+
+.i-alert {
+  font-family: $font-family;
+  padding: $padding-sm;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  justify-content: flex-start;
+  background-color: lighten($surface, 10);
+  border: 1px solid $secondary;
+  border-radius: $alert-border-radius;
+  @each $prefix, $intent in $intents {
+    &.i-#{$prefix} {
+      background-color: map-get($intents-bg, $prefix);
+      border: 1px solid $intent;
+    }
+  }
+  .i-alert-close {
+    position: absolute;
+    top: $padding-sm;
+    right: $padding-sm;
+  }
+  .i-alert-message {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-weight: $bold;
+    .i-icon {
+      margin-right: $margin-xs;
+      font-size: $font-size-lg;
+    }
+  }
+  .i-alert-description {
+    margin-top: $margin-xs;
+    font-size: $text-2-size;
+  }
+}

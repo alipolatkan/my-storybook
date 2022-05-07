@@ -19,10 +19,10 @@
   color: $gray-10;
   background-color: $color;
   @include hover {
-    background-color: darken($color, 10%);
+    background-color: darken($color, 4%);
   }
   @include active {
-    background-color: darken($color, 20%);
+    background-color: darken($color, 8%);
   }
 }
 
