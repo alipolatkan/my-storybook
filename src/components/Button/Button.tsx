@@ -13,10 +13,6 @@ interface ButtonProps extends IButton {
    */
   className?: string;
   /**
-   * If it is true, button is disabled ana non-interactive
-   */
-  disabled?: boolean;
-  /**
    * Name of icon. Rendered before text
    */
   icon?: string;
@@ -26,9 +22,9 @@ interface ButtonProps extends IButton {
    */
   intent?: intent;
   /**
-   * Button contents
+   * Button text
    */
-  label?: string;
+  text?: string;
   /**
    * If it is true, button is disabled and loading animation
    */
@@ -58,7 +54,7 @@ export const Button = ({
   className,
   children,
   icon,
-  label,
+  text,
   disabled,
   loading,
   ...props
@@ -69,7 +65,7 @@ export const Button = ({
     intent && `i-btn-${intent}`,
     size && `i-btn-${size}`,
     loading && `i-btn-loading`,
-    disabled && `i-btn-disabled`,
+    disabled && `i-disabled`,
     className
   );
 
@@ -77,7 +73,7 @@ export const Button = ({
     <button className={classNames} disabled={loading || disabled} {...props}>
       <span className="i-btn-text">
         {icon && <Icon intent={variant === "icon" && intent} name={icon} />}
-        {children || label}
+        {children || text}
       </span>
       {loading && <Spinner />}
     </button>

@@ -1,0 +1,8 @@
+.i {
+  &-error {
+    &-message {
+      color: $danger;
+      font-size: $font-size-sm;
+    }
+  }
+}

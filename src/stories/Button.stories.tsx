@@ -17,96 +17,96 @@ export const WithChild: ComponentStory<typeof Button> = (args) => (
 
 const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
 
+export const Basic = Template.bind({});
+Basic.args = {
+  text: "Button",
+};
+
 export const IntentPrimary = Template.bind({});
 IntentPrimary.args = {
-  label: "Button",
+  text: "Button",
 };
 
 export const IntentSecondary = Template.bind({});
 IntentSecondary.args = {
-  label: "Button",
+  text: "Button",
   intent: "secondary",
 };
 
 export const IntentSuccess = Template.bind({});
 IntentSuccess.args = {
-  label: "Button",
+  text: "Button",
   intent: "success",
 };
 
 export const IntentWarning = Template.bind({});
 IntentWarning.args = {
-  label: "Button",
+  text: "Button",
   intent: "warning",
 };
 
 export const IntentDanger = Template.bind({});
 IntentDanger.args = {
-  label: "Button",
+  text: "Button",
   intent: "danger",
 };
 
 export const IntentInfo = Template.bind({});
 IntentInfo.args = {
-  label: "Button",
+  text: "Button",
   intent: "info",
 };
 
 export const VariantOutline = Template.bind({});
 VariantOutline.args = {
-  label: "Button",
+  text: "Button",
   variant: "outline",
 };
 
 export const VariantGhost = Template.bind({});
 VariantGhost.args = {
-  label: "Button",
+  text: "Button",
   variant: "ghost",
 };
 
 export const SizeLarge = Template.bind({});
 SizeLarge.args = {
   size: "lg",
-  label: "Button",
-};
-
-export const SizeDefault = Template.bind({});
-SizeDefault.args = {
-  label: "Button",
+  text: "Button",
 };
 
 export const SizeMedium = Template.bind({});
 SizeMedium.args = {
   size: "md",
-  label: "Button",
+  text: "Button",
 };
 
 export const SizeSmall = Template.bind({});
 SizeSmall.args = {
   size: "sm",
-  label: "Button",
+  text: "Button",
 };
 
 export const WithLoading = Template.bind({});
 WithLoading.args = {
-  label: "Button",
+  text: "Button",
   loading: true,
 };
 
 export const WithIcon = Template.bind({});
 WithIcon.args = {
-  label: "Button",
+  text: "Button",
   icon: "checkmark",
 };
 
 export const Disabled = Template.bind({});
 Disabled.args = {
-  label: "Button",
+  text: "Button",
   disabled: true,
 };
 
 export const JustIcon = Template.bind({});
 JustIcon.args = {
   variant: "icon",
-  icon: "clear"
+  icon: "clear",
 };

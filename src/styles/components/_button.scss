@@ -31,8 +31,7 @@ $button-sizes: (
     width: fit-content;
 
     &-loading {
-      opacity: 0.5;
-      cursor: not-allowed;
+      cursor: unset;
     }
 
     &-text {
@@ -41,11 +40,8 @@ $button-sizes: (
       }
     }
 
-    &-disabled {
+    &.i-disabled {
       background-color: $surface !important;
-      opacity: 0.5;
-      color: $gray-60 !important;
-      cursor: not-allowed;
     }
 
     .i-icon {

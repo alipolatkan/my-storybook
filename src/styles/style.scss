@@ -6,11 +6,14 @@
 @import "abstracts/font";
 @import "abstracts/size";
 
+/** Components */
+@import "components/button";
+@import "components/checkbox";
+@import "components/icon";
+@import "components/spinner";
+
 /** Base */
 @import "base/global";
 @import "base/icons";
-
-/** Components */
-@import "components/button";
-@import "components/icon";
-@import "components/spinner";
+@import "base/disabled";
+@import "base/error";
