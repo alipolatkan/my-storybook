@@ -6,12 +6,16 @@
 @import "abstracts/font";
 @import "abstracts/size";
 
+/** Animations */
+@import "animations/collapse";
+
 /** Components */
 @import "components/alert";
 @import "components/button";
 @import "components/checkbox";
 @import "components/icon";
 @import "components/spinner";
+@import "components/collapse";
 
 /** Base */
 @import "base/global";

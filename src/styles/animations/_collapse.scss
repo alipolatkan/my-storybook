@@ -1,0 +1,27 @@
+@mixin collapse-animation($duration: 300ms) {
+  .i-panel__collapse-enter {
+    max-height: 0vh;
+  }
+
+  .i-panel__collapse-enter-active {
+    max-height: 100vh;
+    transition: max-height $duration linear;
+  }
+
+  .i-panel__collapse-enter-done {
+    max-height: 100vh;
+  }
+
+  .i-panel__collapse-exit {
+    max-height: 100vh;
+  }
+
+  .i-panel__collapse-exit-active {
+    max-height: 0vh;
+    transition: max-height $duration linear;
+  }
+
+  .i-panel__collapse-exit-done {
+    max-height: 0vh;
+  }
+}

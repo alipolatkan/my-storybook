@@ -5,7 +5,7 @@ export default {
   title: "UI Components/Button",
   component: Button,
   argTypes: {
-    // backgroundColor: { control: "color" },
+    onClick: { action: "Button Component onClick event" },
   },
 } as ComponentMeta<typeof Button>;
 
