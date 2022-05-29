@@ -1,0 +1,79 @@
+@mixin drawer-animation($duration: 400ms) {
+    .m-slide--right {
+      &.m-drawer-enter {
+        transform: translateX(100%);
+      }
+  
+      &.m-drawer-enter-active {
+        transform: translateX(0);
+        transition: transform $duration;
+      }
+  
+      &.m-drawer-exit {
+        transform: translateX(0);
+      }
+  
+      &.m-drawer-exit-active {
+        transform: translateX(100%);
+        transition: transform $duration;
+      }
+    }
+    .m-slide--left {
+      &.m-drawer-enter {
+        transform: translateX(-100%);
+      }
+  
+      &.m-drawer-enter-active {
+        transform: translateX(0);
+        transition: transform $duration;
+      }
+  
+      &.m-drawer-exit {
+        transform: translateX(0);
+      }
+  
+      &.m-drawer-exit-active {
+        transform: translateX(-100%);
+        transition: transform $duration;
+      }
+    }
+    .m-slide--top {
+      &.m-drawer-enter {
+        transform: translateY(-100%);
+      }
+  
+      &.m-drawer-enter-active {
+        transform: translateY(0);
+        transition: transform $duration;
+      }
+  
+      &.m-drawer-exit {
+        transform: translateY(0);
+      }
+  
+      &.m-drawer-exit-active {
+        transform: translateY(-100%);
+        transition: transform $duration;
+      }
+    }
+    .m-slide--bottom {
+      &.m-drawer-enter {
+        transform: translateY(100%);
+      }
+  
+      &.m-drawer-enter-active {
+        transform: translateY(0);
+        transition: transform $duration;
+      }
+  
+      &.m-drawer-exit {
+        transform: translateY(0);
+      }
+  
+      &.m-drawer-exit-active {
+        transform: translateY(100%);
+        transition: transform $duration;
+      }
+    }
+  }
+  
