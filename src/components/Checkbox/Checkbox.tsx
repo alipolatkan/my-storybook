@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import cx from "classnames";
 // Interfaces
 import { IInput } from "../../interfaces";
