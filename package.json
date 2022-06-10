@@ -1,7 +1,7 @@
 {
-  "name": "my-storybook",
-  "version": "0.1.0",
-  "private": true,
+  "name": "inn-react-ui",
+  "version": "1.0.0",
+  "private": false,
   "dependencies": {
     "@storybook/cli": "^6.4.22",
     "@storybook/preset-scss": "^1.0.3",

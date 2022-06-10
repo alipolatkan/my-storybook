@@ -2,7 +2,7 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { Checkbox } from "../components/Checkbox";
 
 export default {
-  title: "UI Components/Checkbox",
+  title: "Form Elements/Checkbox",
   component: Checkbox,
   argTypes: {
     // backgroundColor: { control: "color" },
