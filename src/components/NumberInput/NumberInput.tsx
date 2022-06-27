@@ -44,7 +44,7 @@ interface NumberInputProps extends IInput {
   /**
    * When status is equal to error, shows this message
    */
-  statusMessage?: React.ReactNode;
+  statusMessage?: string;
   /**
    * Default Value
    */
@@ -89,11 +89,11 @@ export const NumberInput = ({
   });
   const inputRef = useRef<HTMLInputElement | null>(null);
   const classNames = {
-    wrapper: cx("m-input__number__wrapper"),
+    wrapper: cx("i-input-number-wrapper"),
     input: cx(
-      "m-input__number",
-      (disabled || loading) && "m-input--disabled",
-      status && `m-${status}`,
+      "i-input-number",
+      (disabled || loading) && "disabled",
+      status && `i-${status}`,
       className
     ),
   };
@@ -161,8 +161,8 @@ export const NumberInput = ({
 
   return (
     <div className={classNames.input}>
-      {label && <label className="m-input__label">{label}</label>}
-      {helperText && <div className="m-input__helper">{helperText}</div>}
+      {label && <label className="i-label">{label}</label>}
+      {helperText && <div className="i-helper">{helperText}</div>}
       <div className={classNames.wrapper}>
         <button
           onClick={handleDecrease}
@@ -190,7 +190,7 @@ export const NumberInput = ({
         </button>
       </div>
       {status && statusMessage && (
-        <div className="m-field__message">{statusMessage}</div>
+        <div className="i-field-message">{statusMessage}</div>
       )}
     </div>
   );

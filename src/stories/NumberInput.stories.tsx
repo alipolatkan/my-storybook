@@ -16,6 +16,13 @@ const Template: ComponentStory<typeof NumberInput> = (args) => (
 export const Basic = Template.bind({});
 Basic.args = {};
 
+export const Disabled = Template.bind({});
+Disabled.args = {
+  label: "Input Label",
+  helperText: "Helper Text",
+  disabled: true,
+};
+
 export const DefaultValue = Template.bind({});
 DefaultValue.args = {
   label: "Input Label",

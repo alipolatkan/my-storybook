@@ -1,0 +1,48 @@
+.i {
+  &-input-number {
+    &-wrapper {
+      display: flex;
+      border: 1px solid $surface;
+      width: fit-content;
+      .i-success & {
+        border: 1px solid $success;
+        background-color: desaturate(lighten($success, 50), 20);
+      }
+      .i-warning & {
+        border: 1px solid $warning;
+        background-color: desaturate(lighten($warning, 45), 20);
+      }
+      .i-danger & {
+        border: 1px solid $danger;
+        background-color: desaturate(lighten($danger, 50), 20);
+      }
+      button {
+        background: none;
+        border: none;
+        font-size: $font-size-base;
+        cursor: pointer;
+        &:disabled {
+          cursor: unset;
+        }
+      }
+      input {
+        -moz-appearance: textfield;
+        -moz-appearance: none;
+        appearance: none;
+        border: none;
+        text-align: center;
+        min-height: 2rem;
+        background: none;
+        &::-webkit-inner-spin-button,
+        &::-webkit-outer-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+        }
+        &:focus-visible {
+          border: none;
+          outline: 0;
+        }
+      }
+    }
+  }
+}
