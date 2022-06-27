@@ -28,6 +28,8 @@ DefaultValue.args = {
   label: "Input Label",
   helperText: "Helper Text",
   defaultValue: 66,
+  status: "warning",
+  statusMessage: "test status message"
 };
 
 export const MinMaxValue = Template.bind({});
