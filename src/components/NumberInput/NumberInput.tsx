@@ -42,7 +42,7 @@ interface NumberInputProps extends IInput {
    */
   stepAmount?: number;
   /**
-   * When status is equal to error, shows this message
+   * If has value shows this message
    */
   statusMessage?: string;
   /**
@@ -166,7 +166,7 @@ export const NumberInput = ({
       <div className={classNames.wrapper}>
         <button
           onClick={handleDecrease}
-          disabled={disabled || buttonStates.btnDecrease.disabled}
+          disabled={disabled || loading || buttonStates.btnDecrease.disabled}
         >
           −
         </button>
@@ -184,13 +184,13 @@ export const NumberInput = ({
         />
         <button
           onClick={handleIncrease}
-          disabled={disabled || buttonStates.btnIncrease.disabled}
+          disabled={disabled || loading || buttonStates.btnIncrease.disabled}
         >
           +
         </button>
       </div>
       {status && statusMessage && (
-        <div className="i-field-message">{statusMessage}</div>
+        <div className="i-status-message">{statusMessage}</div>
       )}
     </div>
   );

@@ -1,0 +1,12 @@
+.i-status-message {
+  font-size: $font-size-md;
+  .i-success & {
+    color: $success;
+  }
+  .i-warning & {
+    color: $warning;
+  }
+  .i-danger & {
+    color: lighten($color: $danger, $amount: 15);
+  }
+}

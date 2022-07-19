@@ -1,42 +1,43 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import { Checkbox } from "../components/Checkbox";
+import { Radio } from "../components/Radio";
 
 export default {
-  title: "Form Elements/Checkbox",
-  component: Checkbox,
+  title: "Form Elements/Radio",
+  component: Radio,
   argTypes: {
     // backgroundColor: { control: "color" },
   },
-} as ComponentMeta<typeof Checkbox>;
+} as ComponentMeta<typeof Radio>;
 
-const Template: ComponentStory<typeof Checkbox> = (args) => (
-  <Checkbox {...args} />
-);
+const Template: ComponentStory<typeof Radio> = (args) => <Radio {...args} />;
 
 export const Basic = Template.bind({});
 Basic.args = {
-  id: "1",
-  text: "Check me out!",
+  id: "radio",
+  text: "Click me out!",
+  name: "radio",
 };
 
 export const Checked = Template.bind({});
 Checked.args = {
-  id: "2",
-  text: "Check me out!",
+  id: "radio",
+  text: "Click me out!",
+  name: "radio",
   checked: true,
 };
 
 export const Disabled = Template.bind({});
 Disabled.args = {
-  id: "3",
-  text: "Check me out!",
+  id: "radio",
+  text: "Click me out!",
+  name: "radio",
   disabled: true,
 };
 
 export const Error = Template.bind({});
 Error.args = {
   id: "4",
-  text: "Check me out!",
+  text: "Click me out!",
   status: "danger",
   statusMessage: "Something is wrong!",
 };

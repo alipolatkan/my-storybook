@@ -2,7 +2,7 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { Button } from "../components/Button/Button";
 
 export default {
-  title: "UI Components/Button",
+  title: "Form Elements/Button",
   component: Button,
   argTypes: {
     onClick: { action: "Button Component onClick event" },

@@ -39,7 +39,13 @@
               background-color: $primary;
               border: $primary;
             }
-            .i-error & {
+            .i-success & {
+              border: 2px solid $success;
+            }
+            .i-warning & {
+              border: 2px solid $warning;
+            }
+            .i-danger & {
               border: 2px solid lighten($color: $danger, $amount: 15);
             }
           }

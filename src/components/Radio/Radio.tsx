@@ -1,17 +1,17 @@
 import { useEffect, useRef, useState } from "react";
 import cx from "classnames";
 // Types
-import { status } from "./Checkbox.types";
+import { status } from "./Radio.types";
 // Interfaces
 import { IInput } from "../../interfaces";
 
-interface CheckboxProps extends IInput {
+interface RadioProps extends IInput {
   /**
-   * Validation statuses
+   * Status of Radio
    */
   status?: status;
   /**
-   * If has value shows this message
+   * When error is true, shows this message
    */
   statusMessage?: string;
   /**
@@ -19,15 +19,15 @@ interface CheckboxProps extends IInput {
    */
   className?: string;
   /**
-   * Inline Text of Checkbox
+   * Inline Text of Radio
    */
   text?: string;
 }
 
 /**
- * Checkbox UI component for user interaction
+ * Radio UI component for user interaction
  */
-export const Checkbox = ({
+export const Radio = ({
   id,
   status,
   statusMessage,
@@ -36,11 +36,11 @@ export const Checkbox = ({
   text,
   checked,
   ...props
-}: CheckboxProps) => {
+}: RadioProps) => {
   const [checkState, setCheckState] = useState<boolean>(false);
   const inputRef = useRef<HTMLInputElement | null>(null);
   const classNames = cx(
-    "i-checkbox",
+    "i-radio",
     checkState && "checked",
     status && `i-${status}`,
     disabled && "i-disabled"
@@ -56,15 +56,16 @@ export const Checkbox = ({
   }, [checkState]);
 
   const handleCheck = () => setCheckState(!checkState);
+
   return (
     <div className={classNames}>
-      <div className="i-checkbox-input">
+      <div className="i-radio-input">
         <label htmlFor={id}>
           <input
             ref={inputRef}
             id={id}
-            type="checkbox"
-            defaultChecked={checkState}
+            type="radio"
+            defaultChecked={checked}
             disabled={disabled}
             onChange={handleCheck}
             {...props}
