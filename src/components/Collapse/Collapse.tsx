@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import cx from "classnames";
 // Interface
 import { IDiv } from "../../interfaces";
 
-interface CollapseProps extends IDiv {
+interface ICollapseProps extends IDiv {
   /**
    * When accordion prop is true, only one panel will be active
    * @default false
@@ -44,16 +44,17 @@ interface CollapseProps extends IDiv {
 /**
  * Collapse UI component for user interaction
  */
-export const Collapse = ({
-  accordion = false,
-  icon = false,
-  clickable = true,
-  disabledActivePanel = false,
-  children,
-  defaultActive,
-  onPanelChange,
-}: CollapseProps) => {
+export const Collapse: FC<ICollapseProps> = (props) => {
   const [activePanels, setActivePanels] = useState<Array<number>>([]);
+  const {
+    accordion = false,
+    icon = false,
+    clickable = true,
+    disabledActivePanel = false,
+    children,
+    defaultActive,
+    onPanelChange,
+  } = props;
   const classNames = cx("i-collapse");
 
   useEffect(() => {
@@ -64,8 +65,7 @@ export const Collapse = ({
   const onHandleChange = (index: number) => {
     if (!accordion) setActivePanels([...activePanels, index]);
     else setActivePanels([index]);
-    if (activePanels.some((a) => a === index))
-      setActivePanels(activePanels.filter((a) => a !== index));
+    if (activePanels.some((a) => a === index)) setActivePanels(activePanels.filter((a) => a !== index));
   };
   return (
     <div className={classNames}>
@@ -76,9 +76,7 @@ export const Collapse = ({
           handleChange: onHandleChange,
           onPanelChange,
           panelIndex: i + 1,
-          clickable: disabledActivePanel
-            ? !activePanels.some((a) => a === i + 1)
-            : clickable,
+          clickable: disabledActivePanel ? !activePanels.some((a) => a === i + 1) : clickable,
         })
       )}
     </div>

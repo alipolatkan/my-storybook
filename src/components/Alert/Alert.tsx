@@ -1,14 +1,14 @@
+import React, { FC, Suspense, useState } from "react";
 import cx from "classnames";
-import { useState } from "react";
 // Interface
 import { IDiv } from "../../interfaces";
-// Components
-import { Button } from "../Button";
-import { Icon } from "../Icon";
 // Types
 import { intent } from "./Alert.types";
+// Load Lazy Components
+const Icon = React.lazy(() => import("../Icon").then(({ Icon }) => ({ default: Icon })));
+const Button = React.lazy(() => import("../Button").then(({ Button }) => ({ default: Button })));
 
-interface AlertProps extends IDiv {
+interface IAlertProps extends IDiv {
   /**
    * Additional className on alert wrapper
    */
@@ -44,36 +44,35 @@ interface AlertProps extends IDiv {
 /**
  * Alert UI component for user interaction
  */
-export const Alert = ({
-  intent,
-  message,
-  description,
-  icon,
-  className,
-  closable,
-  onClose,
-}: AlertProps) => {
+export const Alert: FC<IAlertProps> = (props) => {
   const [isClose, setClose] = useState<boolean>(false);
+  const { intent, message, description, icon, className, closable, onClose } = props;
   const classNames = cx("i-alert", intent && `i-${intent}`, className);
-  const handleClose = (e: any) => {
+  const handleClose = (e: React.MouseEvent<HTMLButtonElement>) => {
     setClose(true);
     if (onClose) onClose(e);
   };
   if (isClose) return null;
   return (
-    <div className={classNames}>
+    <div {...props} className={classNames}>
       {closable && (
-        <Button
-          className="i-alert-close"
-          variant="icon"
-          intent="secondary"
-          icon="close"
-          onClick={handleClose}
-        />
+        <Suspense>
+          <Button
+            className="i-alert-close"
+            variant="icon"
+            intent="secondary"
+            icon="clear"
+            onClick={handleClose}
+          />
+        </Suspense>
       )}
       {message && (
         <div className="i-alert-message">
-          {icon && <Icon intent={intent} name={icon} />}
+          {icon && (
+            <Suspense>
+              <Icon intent={intent} name={icon} />
+            </Suspense>
+          )}
           {message}
         </div>
       )}

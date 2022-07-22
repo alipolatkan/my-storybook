@@ -6,7 +6,7 @@ import { IDiv } from "../../interfaces";
 import { Header } from "./Header";
 import { Content } from "./Content";
 
-interface PanelProps extends IDiv {
+interface IPanelProps extends IDiv {
   /**
    * If true, panel will expand
    */
@@ -48,25 +48,24 @@ interface PanelProps extends IDiv {
 /**
  * Collapse Panel UI component for user interaction
  */
-const Panel = ({
-  active,
-  disabled,
-  icon,
-  className,
-  children,
-  clickable,
-  panelIndex,
-  panelKey,
-  handleChange,
-  onPanelChange,
-}: PanelProps) => {
+const Panel = (props: IPanelProps) => {
+  const {
+    active,
+    disabled,
+    icon,
+    className,
+    children,
+    clickable,
+    panelIndex,
+    panelKey,
+    handleChange,
+    onPanelChange,
+  } = props;
   const [CollapseHeader, CollapseContent] = React.Children.toArray(children);
-
   const classNames = cx("i-panel", disabled && "disabled", className);
 
   const handleActive = () => {
-    if (!disabled && typeof handleChange !== "undefined")
-      handleChange(panelIndex);
+    if (!disabled && typeof handleChange !== "undefined") handleChange(panelIndex);
   };
 
   useEffect(() => {

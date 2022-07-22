@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import cx from "classnames";
 import { CSSTransition } from "react-transition-group";
@@ -7,7 +7,7 @@ import { IDiv } from "../../interfaces";
 // Types
 import { position } from "./Drawer.types";
 
-interface DrawerProps extends IDiv {
+interface IDrawerProps extends IDiv {
   /**
    * If true, drawer is mounted
    */
@@ -39,16 +39,11 @@ interface DrawerProps extends IDiv {
 /**
  * Drawer UI component for user interaction
  */
-export const Drawer = ({
-  active,
-  position = "right",
-  closeOnOverlay = true,
-  className,
-  children,
-  onClose,
-  onEnter,
-}: DrawerProps) => {
+export const Drawer: FC<IDrawerProps> = (props) => {
   const [isActive, setActive] = useState<boolean>(false);
+  const { active, position = "right", closeOnOverlay = true, className, children, onClose, onEnter } = props;
+  const classNames = cx("i-drawer-wrapper", position && `i-drawer-wrapper--${position}`, className);
+
   useEffect(() => {
     if (active) window.document.body.style.overflow = "hidden";
     return () => {
@@ -65,12 +60,6 @@ export const Drawer = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [active]);
 
-  const classNames = cx(
-    "i-drawer-wrapper",
-    position && `i-drawer-wrapper--${position}`,
-    className
-  );
-
   const handleEnter = () => onEnter && onEnter();
 
   const handleClose = () => onClose && onClose();
@@ -84,12 +73,7 @@ export const Drawer = ({
 
   return createPortal(
     <>
-      <CSSTransition
-        in={isActive}
-        unmountOnExit
-        timeout={200}
-        classNames="m-mask"
-      >
+      <CSSTransition in={isActive} unmountOnExit timeout={200} classNames="m-mask">
         <div onClick={handleCloseOnOverlay} className="m-mask__wrapper" />
       </CSSTransition>
       <CSSTransition

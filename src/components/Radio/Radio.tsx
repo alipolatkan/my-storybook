@@ -1,11 +1,11 @@
-import { useEffect, useRef, useState } from "react";
+import { FC, useEffect, useRef, useState } from "react";
 import cx from "classnames";
 // Types
 import { status } from "./Radio.types";
 // Interfaces
 import { IInput } from "../../interfaces";
 
-interface RadioProps extends IInput {
+interface IRadioProps extends IInput {
   /**
    * Status of Radio
    */
@@ -27,23 +27,16 @@ interface RadioProps extends IInput {
 /**
  * Radio UI component for user interaction
  */
-export const Radio = ({
-  id,
-  status,
-  statusMessage,
-  disabled,
-  className,
-  text,
-  checked,
-  ...props
-}: RadioProps) => {
+export const Radio: FC<IRadioProps> = (props) => {
+  const { id, status, statusMessage, disabled, className, text, checked } = props;
   const [checkState, setCheckState] = useState<boolean>(false);
   const inputRef = useRef<HTMLInputElement | null>(null);
   const classNames = cx(
     "i-radio",
     checkState && "checked",
     status && `i-${status}`,
-    disabled && "i-disabled"
+    disabled && "i-disabled",
+    className
   );
 
   useEffect(() => {
@@ -73,9 +66,7 @@ export const Radio = ({
         </label>
         {text && <label htmlFor={id}>{text}</label>}
       </div>
-      {status && statusMessage && (
-        <div className="i-status-message">{statusMessage}</div>
-      )}
+      {status && statusMessage && <div className="i-status-message">{statusMessage}</div>}
     </div>
   );
 };

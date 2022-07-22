@@ -1,13 +1,17 @@
+import React, { FC, Suspense } from "react";
 import cx from "classnames";
 // Interface
 import { IButton } from "../../interfaces";
-// Components
-import { Spinner } from "../Spinner";
-import { Icon } from "../Icon";
 // Types
 import { intent, size, variant } from "./Button.types";
+// Load Lazy Components
+const Icon = React.lazy(() => import("../Icon").then(({ Icon }) => ({ default: Icon })));
+const Spinner = React.lazy(() => import("../Spinner").then(({ Spinner }) => ({ default: Spinner })));
 
-interface ButtonProps extends IButton {
+/**
+ * @interface IButtonProps
+ */
+interface IButtonProps extends IButton {
   /**
    * Additional classes
    */
@@ -43,35 +47,44 @@ interface ButtonProps extends IButton {
 /**
  * Button UI component for user interaction
  */
-export const Button = ({
-  variant = "solid",
-  intent = "primary",
-  size,
-  className,
-  children,
-  icon,
-  text,
-  disabled,
-  loading,
-  ...props
-}: ButtonProps) => {
-  const classNames = cx(
-    "i-btn",
-    variant && `i-btn-${variant}`,
-    intent && `i-btn-${intent}`,
-    size && `i-btn-${size}`,
-    loading && `i-btn-loading`,
-    disabled && `i-disabled`,
-    className
-  );
+export const Button: FC<IButtonProps> = (props) => {
+  const {
+      variant = "solid",
+      intent = "primary",
+      size,
+      className,
+      children,
+      icon,
+      text,
+      disabled,
+      loading,
+    } = props,
+    classNames = cx(
+      "i-btn",
+      variant && `i-btn-${variant}`,
+      intent && `i-btn-${intent}`,
+      size && `i-btn-${size}`,
+      loading && `i-btn-loading`,
+      disabled && `i-disabled`,
+      className
+    );
 
   return (
-    <button className={classNames} disabled={loading || disabled} {...props}>
+    <button {...props} className={classNames} disabled={disabled || loading}>
       <span className="i-btn-text">
-        {icon && <Icon intent={variant === "icon" && intent} name={icon} />}
-        {children || text}
+        {icon && (
+          <Suspense>
+            <Icon intent={variant === "icon" && intent} name={icon} />
+          </Suspense>
+        )}
+        {text}
+        {children}
       </span>
-      {loading && <Spinner />}
+      {loading && (
+        <Suspense>
+          <Spinner />
+        </Suspense>
+      )}
     </button>
   );
 };

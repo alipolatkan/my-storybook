@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { FC, useRef, useState } from "react";
 import cx from "classnames";
 // Interface
 import { IInput } from "../../interfaces";
@@ -7,7 +7,7 @@ import { status } from "./NumberInput.types";
 // utils
 import { getParsedValue } from "../../utils/formatters";
 
-interface NumberInputProps extends IInput {
+interface INumberInputProps extends IInput {
   /**
    * Label of input
    */
@@ -49,11 +49,6 @@ interface NumberInputProps extends IInput {
    * Default Value
    */
   defaultValue?: number;
-  /**
-   * Number Input Value type
-   * @default 'decimal'
-   */
-  valueType?: "integer" | "decimal";
 }
 
 interface handleChangeParam {
@@ -64,21 +59,7 @@ interface handleChangeParam {
 /**
  * Number Input UI component for user interaction
  */
-export const NumberInput = ({
-  label,
-  helperText,
-  status,
-  statusMessage,
-  loading,
-  className,
-  disabled,
-  minValue,
-  maxValue,
-  stepAmount = 1,
-  defaultValue = 0,
-  valueType = "decimal",
-  ...props
-}: NumberInputProps) => {
+export const NumberInput: FC<INumberInputProps> = (props) => {
   const [buttonStates, setButtonStates] = useState({
     btnIncrease: {
       disabled: false,
@@ -87,31 +68,34 @@ export const NumberInput = ({
       disabled: false,
     },
   });
+  const {
+    label,
+    helperText,
+    status,
+    statusMessage,
+    loading,
+    className,
+    disabled,
+    minValue,
+    maxValue,
+    stepAmount = 1,
+    defaultValue = 0,
+  } = props;
   const inputRef = useRef<HTMLInputElement | null>(null);
   const classNames = {
     wrapper: cx("i-input-number-wrapper"),
-    input: cx(
-      "i-input-number",
-      (disabled || loading) && "disabled",
-      status && `i-${status}`,
-      className
-    ),
+    input: cx("i-input-number", (disabled || loading) && "disabled", status && `i-${status}`, className),
   };
 
   const handleIncrease = () => {
-    if (inputRef.current)
-      handleChangeValue({ element: inputRef, operation: "increase" });
+    if (inputRef.current) handleChangeValue({ element: inputRef, operation: "increase" });
   };
 
   const handleDecrease = () => {
-    if (inputRef.current)
-      handleChangeValue({ element: inputRef, operation: "decrease" });
+    if (inputRef.current) handleChangeValue({ element: inputRef, operation: "decrease" });
   };
 
-  const handleChangeValue = ({
-    element = inputRef,
-    operation,
-  }: handleChangeParam) => {
+  const handleChangeValue = ({ element = inputRef, operation }: handleChangeParam) => {
     if (element && element.current) {
       /**
        * convert value, integer or decimal
@@ -144,10 +128,7 @@ export const NumberInput = ({
           btnIncrease: { disabled: false },
           btnDecrease: { disabled: true },
         });
-      } else if (
-        buttonStates.btnIncrease.disabled ||
-        buttonStates.btnDecrease.disabled
-      ) {
+      } else if (buttonStates.btnIncrease.disabled || buttonStates.btnDecrease.disabled) {
         setButtonStates({
           btnIncrease: { disabled: false },
           btnDecrease: { disabled: false },
@@ -164,11 +145,8 @@ export const NumberInput = ({
       {label && <label className="i-label">{label}</label>}
       {helperText && <div className="i-helper">{helperText}</div>}
       <div className={classNames.wrapper}>
-        <button
-          onClick={handleDecrease}
-          disabled={disabled || loading || buttonStates.btnDecrease.disabled}
-        >
-          −
+        <button onClick={handleDecrease} disabled={disabled || loading || buttonStates.btnDecrease.disabled}>
+          {"−"}
         </button>
         <input
           ref={inputRef}
@@ -182,16 +160,11 @@ export const NumberInput = ({
           onChange={() => handleChangeValue({})}
           {...props}
         />
-        <button
-          onClick={handleIncrease}
-          disabled={disabled || loading || buttonStates.btnIncrease.disabled}
-        >
-          +
+        <button onClick={handleIncrease} disabled={disabled || loading || buttonStates.btnIncrease.disabled}>
+          {"+"}
         </button>
       </div>
-      {status && statusMessage && (
-        <div className="i-status-message">{statusMessage}</div>
-      )}
+      {status && statusMessage && <div className="i-status-message">{statusMessage}</div>}
     </div>
   );
 };

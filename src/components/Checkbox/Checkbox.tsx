@@ -1,11 +1,11 @@
-import { useEffect, useRef, useState } from "react";
+import { FC, useEffect, useRef, useState } from "react";
 import cx from "classnames";
 // Types
 import { status } from "./Checkbox.types";
 // Interfaces
 import { IInput } from "../../interfaces";
 
-interface CheckboxProps extends IInput {
+interface ICheckboxProps extends IInput {
   /**
    * Validation statuses
    */
@@ -27,23 +27,16 @@ interface CheckboxProps extends IInput {
 /**
  * Checkbox UI component for user interaction
  */
-export const Checkbox = ({
-  id,
-  status,
-  statusMessage,
-  disabled,
-  className,
-  text,
-  checked,
-  ...props
-}: CheckboxProps) => {
+export const Checkbox: FC<ICheckboxProps> = (props) => {
   const [checkState, setCheckState] = useState<boolean>(false);
   const inputRef = useRef<HTMLInputElement | null>(null);
+  const { id, status, statusMessage, disabled, className, text, checked } = props;
   const classNames = cx(
     "i-checkbox",
     checkState && "checked",
     status && `i-${status}`,
-    disabled && "i-disabled"
+    disabled && "i-disabled",
+    className
   );
 
   useEffect(() => {
@@ -72,9 +65,7 @@ export const Checkbox = ({
         </label>
         {text && <label htmlFor={id}>{text}</label>}
       </div>
-      {status && statusMessage && (
-        <div className="i-status-message">{statusMessage}</div>
-      )}
+      {status && statusMessage && <div className="i-status-message">{statusMessage}</div>}
     </div>
   );
 };

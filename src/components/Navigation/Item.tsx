@@ -1,8 +1,9 @@
 import cx from "classnames";
+import { FC } from "react";
 // Interface
 import { ILiElement } from "../../interfaces";
 
-interface ItemProps extends ILiElement {
+interface IItemProps extends ILiElement {
   /**
    * Index of active item
    */
@@ -25,19 +26,13 @@ interface ItemProps extends ILiElement {
   onHandleChange?: (e: any, index?: number) => void;
 }
 
-export const Item = ({
-  activeKey,
-  itemIndex,
-  className,
-  children,
-  setActiveItem,
-  onHandleChange,
-}: ItemProps) => {
+export const Item: FC<IItemProps> = (props) => {
+  const { activeKey, itemIndex, className, children, setActiveItem, onHandleChange } = props;
   const classNames = cx("i-menu__item", className, {
     "i-menu__item--active": itemIndex === activeKey,
   });
 
-  const handleClick = (e: any) => {
+  const handleClick = (e: React.MouseEvent<HTMLLIElement>) => {
     e.persist();
     onHandleChange && onHandleChange(e, itemIndex);
     setActiveItem && setActiveItem(itemIndex);

@@ -1,9 +1,10 @@
+import { FC } from "react";
 import cx from "classnames";
 // Interface
 import { IDiv } from "../../interfaces";
 import { Icon } from "../Icon";
 
-interface HeaderProps extends IDiv {
+interface IHeaderProps extends IDiv {
   /**
    * If true, header icon will be rotating
    */
@@ -33,21 +34,9 @@ interface HeaderProps extends IDiv {
 /**
  * Collapse Header UI component for user interaction
  */
-export const Header = ({
-  active,
-  disabled,
-  clickable,
-  icon,
-  children,
-  className,
-  handleActive,
-}: HeaderProps) => {
-  const classNames = cx(
-    "i-panel-header",
-    disabled && "disabled",
-    active && "active",
-    className
-  );
+export const Header: FC<IHeaderProps> = (props) => {
+  const { active, disabled, clickable, icon, children, className, handleActive } = props;
+  const classNames = cx("i-panel-header", disabled && "disabled", active && "active", className);
   const handleClick = () => {
     clickable && typeof handleActive !== "undefined" && handleActive();
   };

@@ -7,7 +7,7 @@ import { direction } from "./Navigation.types";
 // Component
 import { Item } from "./Item";
 
-interface NavigationProps extends IUlElement {
+interface INavigationProps extends IUlElement {
   /**
    * display type
    * @default "horizontal"
@@ -30,22 +30,18 @@ interface NavigationProps extends IUlElement {
 /**
  * Navigation UI component for user interaction
  */
-const Navigation = ({
-  defaultActiveKey,
-  className,
-  displayType = "horizontal",
-  onItemChange,
-  children,
-  ...props
-}: NavigationProps) => {
+const Navigation = (props: INavigationProps) => {
   const [activeItem, setActiveItem] = useState<number>(0);
+  const { defaultActiveKey, className, displayType = "horizontal", onItemChange, children } = props;
   const classNames = cx(className, {
     "i-menu": displayType === "vertical",
     "i-nav": displayType === "horizontal",
   });
+
   const handleActiveItem = (index: number) => {
     setActiveItem(index);
   };
+
   const handleChange = (e: any, index: number) => {
     e.persist();
     onItemChange && onItemChange(e, index);
